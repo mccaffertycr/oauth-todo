@@ -1,11 +1,10 @@
 import React, { Component } from 'react';
 import Login from './components/login';
 import Profile from './components/profile';
-import Clock from './components/clock';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import { library } from '@fortawesome/fontawesome-svg-core'
-import { faTrashAlt, faPlus } from '@fortawesome/free-solid-svg-icons'
-library.add(faTrashAlt, faPlus);
+import { faTrashAlt, faPlus, faStickyNote } from '@fortawesome/free-solid-svg-icons'
+library.add(faTrashAlt, faPlus, faStickyNote);
 
 class App extends Component {
   constructor() {
@@ -73,10 +72,7 @@ class App extends Component {
     }
 
     return (
-      
-
       <div className="App" style={bgStyle}>
-        <Clock />
         <BrowserRouter>
           <Switch>
             <Route exact path='/login' component={Login} />

@@ -5,10 +5,11 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 const Todo = (props) => {
 
   return (
-    <ListGroupItem
-      key={props._id}
-    >
-    {props.todo}
+    <ListGroupItem>
+    {`${props.todo}     `}
+      <Button bsStyle="info">
+        <FontAwesomeIcon icon={'sticky-note'} />
+      </Button>{'   '}
       {
         props.completed ? 
           <Button 
@@ -24,6 +25,7 @@ const Todo = (props) => {
           ✔
           </Button>
       }
+      
     </ListGroupItem>
 
   )
