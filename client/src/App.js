@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import Login from './components/login';
 import Profile from './components/profile';
-import { BrowserRouter, Route } from 'react-router-dom';
+import Clock from './components/clock';
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { faTrashAlt, faPlus } from '@fortawesome/free-solid-svg-icons'
 library.add(faTrashAlt, faPlus);
@@ -13,12 +14,15 @@ class App extends Component {
       onMobile: false,
       onTablet: false,
       onDesktop: false,
+      isDay: false
     }
     this.handleResize = this.handleResize.bind(this);
+    this.handleTimeChange = this.handleTimeChange.bind(this);
   }
 
   componentDidMount() {
     window.addEventListener('resize', this.handleResize);
+    this.handleTimeChange();
   }
 
   componentWillUnMount() {
@@ -36,14 +40,48 @@ class App extends Component {
     }
   }
 
+  handleTimeChange() {
+    let time = new Date(Date.now());
+
+    time = time.toLocaleString();
+
+    if (time.indexOf('PM') <= 0) {
+      this.setState({
+        isDay: false
+      });
+    } else {
+      this.setState({
+        isDay: true
+      });
+    }
+
+  }
+
   render() {
+     const bgStyle = {
+      background: `${this.state.isDay ? 
+                    'url("/assets/img/day_bg.jpg")' : 
+                    'url("/assets/img/night_bg.jpg")'} 
+                    no-repeat center center fixed`,
+      backgroundSize: 'cover',
+      width: '100%',
+      height: '100%',
+      overflow: 'hidden',
+      position: 'fixed',
+      top: 0,
+      left: 0
+    }
+
     return (
-      <div className="App">
+      
+
+      <div className="App" style={bgStyle}>
+        <Clock />
         <BrowserRouter>
-          <div>
+          <Switch>
             <Route exact path='/login' component={Login} />
             <Route exact path='/profile' component={Profile} />
-          </div>
+          </Switch>
         </BrowserRouter>
       </div>
     );

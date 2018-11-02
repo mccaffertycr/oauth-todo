@@ -1,16 +1,16 @@
 import React from 'react';
 import { Grid, Row, Col, ListGroup, FormGroup, FormControl, Button } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import Clock from './clock';
 import Todo from './todo';
 import axios from 'axios';
 
 class Profile extends React.Component {
-  constructor(props){
+  constructor(props) {
     super(props);
     this.state = { profile: [], todos: [], newTodo: '' };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleSubmitTodo = this.handleSubmitTodo.bind(this);
   }
 
   componentDidMount() {
@@ -58,20 +58,39 @@ class Profile extends React.Component {
     this.getTodos();
   }
 
+  handleSubmitTodo = (id, action) => {
+    if (action === 'complete') {
+      axios
+      .put('/api/todos', { data: { id: id, completed: true }})
+      .then(res => {
+        console.log(res)
+        this.setState({ newTodo: '' })
+      })
+      .catch(err => console.log(err));
+      this.getTodos();
+    } else if (action === 'delete') {
+      axios
+      .put('/api/todos', { data: { id: id, finished: true }})
+      .then(res => {
+        console.log(res)
+        this.setState({ newTodo: '' })
+      })
+      .catch(err => console.log(err));
+      this.getTodos();
+    } 
+  }
+
   render() { 
     return ( 
      <div>
        <Grid>
          <Row>
            <Col sm={6}>
-             <Clock />
-           </Col>
-           <Col sm={6}>
-            <a className="ml-auto" href="/api/logout">logout</a>
+            <a href="/api/logout">logout</a>
            </Col>
          </Row>
          <Row>
-           <Col sm={4}>
+           <Col xs={5} sm={4}>
              <form>
                <FormGroup>
                 <FormControl
@@ -83,7 +102,7 @@ class Profile extends React.Component {
                </FormGroup>
              </form>
            </Col>
-           <Col sm={2}>
+           <Col xs={1} sm={2}>
             <Button 
               bsStyle={'info'}
               onClick={this.handleSubmit}
@@ -93,17 +112,33 @@ class Profile extends React.Component {
            </Col>
          </Row>
          <Row>
-           <Col sm={6}>
+           <Col xs={12} sm={6}>
              <ListGroup>
                {
                  this.state.todos ? 
                  this.state.todos.map(t => 
-                   <Todo {...t} />) :
+                    !t.completed ?
+                   <Todo handleSubmitTodo={this.handleSubmitTodo} {...t} /> :
+                   '') :
                  ''
                }
              </ListGroup>
            </Col>
-           <Col sm={6}>
+           <Col xs={12} sm={6}>
+            <ListGroup>
+               {
+                 this.state.todos ? 
+                 this.state.todos.map(t => 
+                  t.completed && !t.finished ?
+                   <Todo {...t} /> :
+                   '') :
+                 ''
+               }
+            </ListGroup>
+            <Button bsStyle={'danger'}>
+             empty{' '}
+            <FontAwesomeIcon icon={'trash-alt'} />                     
+            </Button>
            </Col>
          </Row>
        </Grid>

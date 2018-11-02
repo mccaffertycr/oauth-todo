@@ -24,8 +24,12 @@ class Clock extends React.Component {
   }
 
   render() {
+    const clockStyle = {
+      color: 'white',
+    }
+
     return (
-      <div>
+      <div style={clockStyle}>
         <h2>{this.state.date.toLocaleTimeString()}</h2>
       </div>
     );

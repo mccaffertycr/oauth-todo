@@ -36,6 +36,29 @@ module.exports = app => {
       }
     })
 
+    app.put('/api/todos', (req, res) => {
+      if (req.user) {
+        if (req.body.data.completed) {
+          db.Todo
+            .updateOne({ _id: req.body.data.id }, { completed: true })
+            .then(() => {
+              res.send('todo completed');
+            })
+            .catch(err => console.log(err));
+        } else if (req.body.data.finished) {
+          db.Todo
+          .updateOne({ _id: req.body.data.id }, { finished: true })
+          .then(() => {
+            res.send('todo deleted');
+          })
+          .catch(err => console.log(err));
+        }
+      } else {
+        res.status(403).send('you need to be logged in to do that');
+      }
+
+    })
+
     app.post('/api/todos', (req, res) => {
       if (req.user) {
         db.Todo
