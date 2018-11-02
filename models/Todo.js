@@ -2,10 +2,16 @@ const mongoose = require('mongoose');
 const { Schema } = mongoose;
 
 const todoSchema = new Schema({
-    title: String,
-    notes: [],
+    todo: String,
+    notes: [{ 
+      note: {type: String}, 
+      timestamp: { 
+        type: Date, 
+        default: Date.now() 
+      }
+    }],
     completed: { type: Boolean, default: false },
     deleted: { type: Boolean, default: false },
 });
 
-mongoose.model('todo', todoSchema);
+module.exports = mongoose.model('todo', todoSchema);

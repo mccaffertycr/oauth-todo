@@ -3,7 +3,8 @@ const { Schema } = mongoose;
 
 const userSchema = new Schema({
     googleId: String,
-    facebookId:String
+    facebookId:String,
+    todos: [{ type: Schema.Types.ObjectId, ref: 'todo' }]
 });
 
-mongoose.model('user', userSchema);
+module.exports = mongoose.model('user', userSchema);

@@ -1,0 +1,19 @@
+html {
+  height: 100%
+}
+
+body {
+  min-height: 100%;
+  font-family: 'VCR', 'Courier New', Courier, 'Lucida Sans Unicode', 'Lucida Sans', monospace;
+  font-size: 18px;
+  text-transform: uppercase;
+}
+
+body, .day {
+  background-image: url('../img/day_bg.jpg') no-repeat;
+  background-position: 'center';
+  background-size: 'cover';
+  background-repeat: 'noRepeat';
+}
+
+

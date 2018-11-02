@@ -2,6 +2,9 @@ import React, { Component } from 'react';
 import Login from './components/login';
 import Profile from './components/profile';
 import { BrowserRouter, Route } from 'react-router-dom';
+import { library } from '@fortawesome/fontawesome-svg-core'
+import { faTrashAlt, faPlus } from '@fortawesome/free-solid-svg-icons'
+library.add(faTrashAlt, faPlus);
 
 class App extends Component {
   constructor() {
@@ -36,17 +39,6 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <h1>
-          {
-            this.state.onMobile ? 
-            'mobile' :
-            this.state.onTablet ? 
-            'tablet' :
-            this.state.onDesktop ?
-            'desktop' :
-            '' 
-          }
-        </h1>
         <BrowserRouter>
           <div>
             <Route exact path='/login' component={Login} />
