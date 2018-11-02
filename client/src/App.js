@@ -75,7 +75,7 @@ class App extends Component {
       <div className="App" style={bgStyle}>
         <BrowserRouter>
           <Switch>
-            <Route exact path='/login' component={Login} />
+            <Route exact path="/" component={Login} />
             <Route exact path='/profile' component={Profile} />
           </Switch>
         </BrowserRouter>

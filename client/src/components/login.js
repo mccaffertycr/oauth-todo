@@ -1,6 +1,7 @@
 import React from 'react';
 import { Grid, Row, Col, Button } from 'react-bootstrap';
-import Clock from './clock'
+import Clock from './clock';
+import Footer from './footer';
 
 class Login extends React.Component {
   render() { 
@@ -17,6 +18,7 @@ class Login extends React.Component {
               {/* <a href="/auth/facebook" ><Button>Login with facebook</Button></a> */}
             </Col>
           </Row>
+          <Footer />
         </Grid>
      )
   }

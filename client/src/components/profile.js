@@ -3,6 +3,7 @@ import { Grid, Row, Col, ListGroup, ListGroupItem, FormGroup, FormControl, Butto
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import Clock from './clock';
 import Todo from './todo';
+import Footer from './footer';
 import axios from 'axios';
 
 class Profile extends React.Component {
@@ -158,6 +159,7 @@ class Profile extends React.Component {
            </Col>
          </Row>
        </Grid>
+       <Footer profile={this.state.profile} />
      </div>
     )
   }
