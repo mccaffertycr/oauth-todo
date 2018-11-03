@@ -1,14 +1,14 @@
-// require('dotenv').config();
+require('dotenv').config();
 const express = require('express');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const cookieSession = require('cookie-session');
 const passport = require('passport'); 
-const keys = require('./config/keys.js');
+// const keys = require('./config/keys.js');
 require('./models/User.js'); 
 require('./services/passport.js');
 
-mongoose.connect(keys.mongoURI);
+mongoose.connect(process.env.MONGODB_URI);
 
 const app = express();
 app.use(
