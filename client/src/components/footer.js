@@ -11,10 +11,10 @@ class Footer extends Component {
         </Col>
         { 
           this.props.profile ?
-        <Col sm={6}>
-          <a href="/api/todos"><h3 style={{ color: 'white', textDecoration: 'none', textDecorationLine: 'none' }}>API Todos</h3></a>
-        </Col> :
-        ''
+            <Col sm={6}>
+              <a href="/api/todos"><h3 style={{ color: 'white', textDecoration: 'none', textDecorationLine: 'none' }}>API Todos</h3></a>
+            </Col> :
+            ''
         }
       </Row>
     )

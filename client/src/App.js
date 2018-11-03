@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import Login from './components/login';
 import Profile from './components/profile';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
-import { library } from '@fortawesome/fontawesome-svg-core'
-import { faTrashAlt, faPlus, faStickyNote } from '@fortawesome/free-solid-svg-icons'
+import { library } from '@fortawesome/fontawesome-svg-core';
+import { faTrashAlt, faPlus, faStickyNote } from '@fortawesome/free-solid-svg-icons';
 library.add(faTrashAlt, faPlus, faStickyNote);
 
 class App extends Component {

@@ -6,7 +6,7 @@ const Todo = (props) => {
 
   return (
     <ListGroupItem>
-    {`${props.todo}    `}
+    {props.todo + '   '}
       <Button bsStyle="info">
         <FontAwesomeIcon icon={'sticky-note'} />
       </Button>{'   '}
