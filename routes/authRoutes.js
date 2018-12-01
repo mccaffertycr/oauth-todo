@@ -1,5 +1,4 @@
 const passport = require("passport");
-const router = require("express").Router();
 const db = require("../models");
 
 module.exports = app => {
@@ -88,8 +87,4 @@ module.exports = app => {
       res.redirect("/profile");
     }
   );
-
-  router.use(function(req, res) {
-    res.sendFile(path.join(__dirname, "../client/build/index.html"));
-  });
 };
